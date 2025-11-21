@@ -45,7 +45,7 @@ BASCULA/
 ├── Dockerfile              # Construcción de la imagen del Bot
 ├── .env                    # Variables de entorno (Token, DB Creds)
 └── requirements.txt        # Dependencias de Python
-
+```
 
 ⚙️ Instalación y Despliegue
 1. Requisitos Previos
@@ -55,8 +55,10 @@ Un Token de Telegram (consíguelo gratis en @BotFather).
 
 2. Clonar el repositorio
 
+```text
 git clone [https://github.com/tu-usuario/bascula-bot-ai.git](https://github.com/tu-usuario/bascula-bot-ai.git)
 cd bascula-bot-ai
+```
 
 3. Configurar Variables de Entorno
 Crea un archivo .env en la raíz del proyecto y rellena tus datos:
@@ -64,4 +66,6 @@ Crea un archivo .env en la raíz del proyecto y rellena tus datos:
 4. Levantar el Proyecto
 Ejecuta el siguiente comando para construir la imagen y levantar los contenedores:
 
+```text
 docker compose up --build -d
+```
