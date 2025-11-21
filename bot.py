@@ -17,10 +17,10 @@ POINT_CLASS = 10
 DB_USER = os.getenv("DB_USER")
 if not DB_USER:
     raise ValueError("❌ ¡Falta la variable DB_USER en el archivo .env!")
-# Bueno: Si no hay contraseña en .env, devuelve None (vacío) o falla.
+# Si no hay contraseña en .env, devuelve None (vacío) o falla.
 
 DB_PASSWORD = os.getenv("DB_PASSWORD") 
-# O mejor aún, forzar el error si falta:
+# Forzamos el error si falla
 if not DB_PASSWORD:
     raise ValueError("❌ ¡Falta la variable DB_PASSWORD en el archivo .env!")
 
@@ -211,7 +211,6 @@ async def grafico(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_photo(photo=buf, caption="📊 Aquí tienes tu progreso.")
 
 def main():
-    # --- CAMBIO IMPORTANTE ---
     # Usamos post_init para la DB y quitamos asyncio.run()
     app = ApplicationBuilder().token(BOT_TOKEN).post_init(post_init).build()
     
