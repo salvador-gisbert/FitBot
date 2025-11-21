@@ -1,0 +1,34 @@
+services:
+  db:
+    image: postgres:15
+    container_name: bascula_db
+    environment:
+      # Mapeamos tus variables a las que exige la imagen de Postgres
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  bascula_bot:
+    build: .
+    container_name: bascula_bot
+    env_file:
+      - .env
+    depends_on:
+      - db
+    volumes:
+      - .:/app
+    # Importante: forzamos a Python a no usar buffer para ver los logs en tiempo real
+    environment:
+      PYTHONUNBUFFERED: 1
+    command: python bot.py
+    restart: unless-stopped
+
+volumes:
+  db_data:
+
+
